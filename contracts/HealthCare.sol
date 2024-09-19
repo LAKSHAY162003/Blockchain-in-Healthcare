@@ -24,6 +24,7 @@ contract HealthcareAutomationWithIPFS {
     event DataStored(uint timestamp, string deviceId, string ipfsHash);
     event ThresholdExceeded(string deviceId, uint value, uint timestamp);
     event DataProcessed(uint256 normalizedOxygenSaturation, uint256 normalizedRespiratoryRate, uint256 normalizedTemperature);
+    event DeviceMalfunction(string deviceId, string message, uint timestamp);
 
     constructor(address _oracle) {
         owner = msg.sender;
@@ -105,6 +106,10 @@ contract HealthcareAutomationWithIPFS {
         // Check if any of the normalized values exceed the threshold
         if (processedData.oxygenSaturation > thresholdValue || processedData.respiratoryRate > thresholdValue || processedData.temperature > thresholdValue) {
             emit ThresholdExceeded(_deviceId, thresholdValue, block.timestamp);
+
+            // Send malfunctioning message when threshold is exceeded
+            string memory malfunctionMessage = "Device malfunction detected due to abnormal readings.";
+            emit DeviceMalfunction(_deviceId, malfunctionMessage, block.timestamp);
         }
 
         recordCount++;

@@ -4,7 +4,9 @@ pragma solidity ^0.5.7;
 interface IOracle {
     function requestIPFSHash(string calldata _data) external returns (bytes32 requestId);
     function getIPFSHash(bytes32 _requestId) external view returns (string memory);
+    function sendDataToAPI(string calldata _apiUrl, string calldata _data) external returns (bytes32 requestId);
 }
+
 
 contract HealthcareAutomationWithIPFS {
 
@@ -90,16 +92,21 @@ contract HealthcareAutomationWithIPFS {
         // Process and normalize the medical data
         ProcessedMedicalData memory processedData = processMedicalData(oxygenSaturation, respiratoryRate, temperature);
 
-        // Prepare data for IPFS storage
+        // Prepare data for IPFS storage and API request
         string memory dataString = string(abi.encodePacked(
             _deviceId, ",",
             uint2str(processedData.oxygenSaturation), ",",
             uint2str(processedData.respiratoryRate), ",",
             uint2str(processedData.temperature)
         ));
-        
+
+        // Send data to Oracle to store in IPFS and also send to API
         bytes32 requestId = oracle.requestIPFSHash(dataString);
         requestIdToIndex[requestId] = recordCount;
+
+        // Send data to the external API URL (example API endpoint passed as argument)
+        string memory apiUrl = "https://example-api.com/medical-data";
+        oracle.sendDataToAPI(apiUrl, dataString);
 
         emit DataStored(block.timestamp, _deviceId, "Requesting IPFS Hash");
 
@@ -114,6 +121,7 @@ contract HealthcareAutomationWithIPFS {
 
         recordCount++;
     }
+
 
     function fulfillIPFSHash(bytes32 _requestId, string memory _ipfsHash) public {
         require(msg.sender == address(oracle), "Only Oracle can call this function");

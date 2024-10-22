@@ -1475,12 +1475,12 @@
     "1729577255938": {
       "events": {},
       "links": {},
-      "address": "0xE94485e4a15f49cBF6A143ab6bc1C302E8F39774",
-      "transactionHash": "0x3a468aa0ee53a4784d226e8b231bcd0a326be031ffc7f22b871d983e73dcb99f"
+      "address": "0xaff60fd9b2a821364f803F205d768989990A4831",
+      "transactionHash": "0x1f96ce2a293073cf4f3f88f0ae337f8122034f4706621f5d68d9a801ecd0a03f"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-22T06:31:17.189Z",
+  "updatedAt": "2024-10-22T06:34:03.307Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

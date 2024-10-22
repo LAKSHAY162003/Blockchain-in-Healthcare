@@ -15217,12 +15217,12 @@
     "1729577255938": {
       "events": {},
       "links": {},
-      "address": "0x9572Bef99e9ed0d50A14be79CB879e7ef5fEEdaF",
-      "transactionHash": "0xd45588b072a81accaffd332839e6c0affb559a0085e91689ab9133e50b4c508e"
+      "address": "0x8c4396932cBEAF860AC46d03d0fC874656a3bE43",
+      "transactionHash": "0xc1ccd2670661f422a12c101626da8fb1505c8345fa7fb7b6568fdeb93eaab319"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-22T06:31:17.182Z",
+  "updatedAt": "2024-10-22T06:34:03.298Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
